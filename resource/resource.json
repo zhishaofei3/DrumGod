@@ -1,0 +1,65 @@
+{
+    "resources": [
+        {
+            "name": "startBg",
+            "type": "image",
+            "url": "assets/startBg.jpg"
+        },
+        {
+            "name": "gameBg",
+            "type": "image",
+            "url": "assets/gameBg.jpg"
+        },
+        {
+            "name": "egretIcon",
+            "type": "image",
+            "url": "assets/egret_icon.png"
+        },
+        {
+            "name": "startBtn",
+            "type": "image",
+            "url": "assets/startBtn.png"
+        },
+        {
+            "name": "hero.json",
+            "type": "json",
+            "url": "assets/hero/hero.json"
+        },
+        {
+            "name": "hero.png",
+            "type": "image",
+            "url": "assets/hero/hero.png"
+        },
+        {
+            "name": "scorePanel.png",
+            "type": "image",
+            "url": "assets/scorePanel.png"
+        },
+        {
+            "name": "drum1",
+            "type": "sound",
+            "url": "sounds/drum1.mp3"
+        },
+        {
+            "name": "drum2",
+            "type": "sound",
+            "url": "sounds/drum2.mp3"
+        },
+        {
+            "name": "drum3",
+            "type": "sound",
+            "url": "sounds/drum3.mp3"
+        },
+        {
+            "name": "drum4",
+            "type": "sound",
+            "url": "sounds/drum4.mp3"
+        }
+    ],
+    "groups": [
+        {
+            "name": "preload",
+            "keys": "startBg,gameBg,scorePanel.png,egretIcon,startBtn,hero.json,hero.png,scorePanel,drum1,drum2,drum3,drum4"
+        }
+    ]
+}
