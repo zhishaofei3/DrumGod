@@ -105,31 +105,41 @@ class Main extends egret.DisplayObjectContainer {
 	 * Create a game scene
 	 */
 	private mainContainer:egret.Sprite;
-	private bg:egret.Bitmap;
+	private startContainer:StartContainer;
+	private game:Game;
 	public static mcFactory:egret.MovieClipDataFactory;
 
 	private createGameScene():void {
 		this.mainContainer = new egret.Sprite();
 		this.addChild(this.mainContainer);
 
-		var startContainer:StartContainer = new StartContainer();
-		startContainer.addEventListener(StartContainerEvent.START_GAME_EVENT, this.onStartGame, this);
-		this.mainContainer.addChild(startContainer);
+		this.startContainer = new StartContainer();
+		this.mainContainer.addChild(this.startContainer);
+		this.startContainer.addEventListener(StartContainerEvent.START_GAME_EVENT, this.onStartGame, this);
 	}
 
 	private onStartGame(e:StartContainerEvent):void {
 		Main.mcFactory = new egret.MovieClipDataFactory(RES.getRes("hero.json"), RES.getRes("hero.png"));
 		var hero:egret.MovieClip = new egret.MovieClip(Main.mcFactory.generateMovieClipData("xiaoren_mc"));
 
-		var startContainer:StartContainer = e.currentTarget;
-		startContainer.destory();
-		this.mainContainer.removeChild(startContainer);
+		this.startContainer.removeEventListener(StartContainerEvent.START_GAME_EVENT, this.onStartGame, this);
+		this.startContainer.destory();
+		this.mainContainer.removeChild(this.startContainer);
 
-		var game:Game = new Game();
-		this.mainContainer.addChild(game);
-
-
+		this.game = new Game();
+		this.mainContainer.addChild(this.game);
+		this.game.addEventListener(GameEvent.GAME_OVER_EVENT, this.onGameOver, this);
 	}
+
+	private onGameOver(e:GameEvent):void {
+		this.game.removeEventListener(GameEvent.GAME_OVER_EVENT, this.onGameOver, this);
+		this.game.destory();
+
+		this.startContainer = new StartContainer();
+		this.mainContainer.addChild(this.startContainer);
+		this.startContainer.addEventListener(StartContainerEvent.START_GAME_EVENT, this.onStartGame, this);
+	}
+
 }
 
 
